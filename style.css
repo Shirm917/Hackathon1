@@ -26,6 +26,10 @@ div {
     margin-right: 10px;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 .back {
     position: absolute;
 }
