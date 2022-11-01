@@ -10,7 +10,7 @@ body {
 .container {
     display: flex;
     flex-wrap: wrap;
-    width: calc(40%);
+    width: 40%;
     margin: auto;
     background-color: yellow;
 }
@@ -36,13 +36,5 @@ div {
 
 .back {
     background-color: black;
-}
-
-.card1 {
-    background-color: red;
-}
-
-.card2 {
-    background-color: blue;
 }
 
