@@ -43,12 +43,10 @@ function addEvents(listElements) {
 }
 
 addEvents(backs); // adding event listeners to all the backfaces
-// addVisibilitys(fronts);
 
 // When you click on a card the class hide is toggled on and off and when on the card invisible
 function hideAndShow(event) {
     event.target.classList.toggle("hide");
-    // event.target.previousElementSibling.classList.toggle("hide");
 }
 
 // getting the color of the first card 
@@ -104,6 +102,7 @@ function matchClear(event) {
         }, 700);
     }
     goAgain();
+    winner();
 }
 
 // pick again
@@ -126,6 +125,17 @@ function restart(listElements) {
         for (const front of fronts) {
             front.classList.toggle("hide");
         }
+        cardsLeft = 20;
+        h1Element.classList.toggle("hide");
     }
 
+}
+
+function winner() {
+    if (cardsLeft === 0) {
+        const h1Element = document.createElement("h1");
+        const message = document.createTextNode("You Won! Congratulations!");
+        h1Element.append(message);
+        document.body.prepend(h1Element);
+    }
 }
