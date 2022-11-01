@@ -92,7 +92,7 @@ function matchClear(event) {
         setTimeout(function() {
             cardOne.nextElementSibling.classList.toggle("hide");
             cardTwo.nextElementSibling.classList.toggle("hide");
-        }, 300);
+        }, 200);
         addPoints();
         cardsLeft -= 2;
     } else {
@@ -103,6 +103,7 @@ function matchClear(event) {
     }
     goAgain();
     winner();
+    stopTimer();
 }
 
 // pick again
@@ -115,6 +116,9 @@ function goAgain() {
 }
 
 // restarts everything
+let timerCount = 0;
+const timerElem = document.getElementById("timer");
+const h1Element = document.getElementById("winner");
 function restart(listElements) {
     if (cardsLeft === 0) {
         frontNum = 0;
@@ -126,16 +130,34 @@ function restart(listElements) {
             front.classList.toggle("hide");
         }
         cardsLeft = 20;
-        h1Element.classList.toggle("hide");
+        h1Element.classList.toggle("disappear");
+        timerCount = 0;
+        timerElem.textContent = "0";
+        startTimer();
     }
 
 }
 
 function winner() {
     if (cardsLeft === 0) {
-        const h1Element = document.createElement("h1");
-        const message = document.createTextNode("You Won! Congratulations!");
+        const message = document.createTextNode(`You Won after ${timerCount} seconds! Congratulations!`);
         h1Element.append(message);
         document.body.prepend(h1Element);
+    }
+}
+
+let timer;
+function startTimer() { 
+    timer = setInterval(function() {
+    timerElem.textContent = `${timerCount += 1}`;
+    }, 1000)
+}
+
+startTimer();
+
+
+function stopTimer() {
+    if (cardsLeft === 0) {
+        clearInterval(timer);
     }
 }
