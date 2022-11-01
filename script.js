@@ -1,14 +1,19 @@
 const backs = document.querySelectorAll(".back"); // All the backfaces of the cards
 const fronts = document.querySelectorAll(".front"); // All the frontfaces of the cards
 
-let num = 0; // declared before so num doesn't equal zero everytime the function is called
-// To add background colors to the front faces
+let frontNum = 0; // declared before so num doesn't equal zero everytime the function is called
+// To add background colors to the front faces and randomize the colors
 function addColors() {
     const colors = ["red", "blue", "green", "sandybrown", "purple", "orange", "gray", "pink", "lightblue", "maroon"];
-    for (let i = 0; i < colors.length; i++) {
-        if (num < fronts.length) {
-            fronts[num].style.background = colors[i];
-            num++;
+    const numbers = [0,1,2,3,4,5,6,7,8,9];
+    let num = 10;
+    for (const color of colors) {
+        if (frontNum < fronts.length) {
+            const randomNum = Math.floor(Math.random() * num);
+            fronts[frontNum].style.background = colors[numbers[randomNum]];
+            numbers.splice(randomNum, 1);
+            num--;
+            frontNum++;
         } else {
             return;
         }
