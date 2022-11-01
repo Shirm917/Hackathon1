@@ -61,6 +61,13 @@ function matchCheck2(event) {
     cardTwo = event.target;
 }
 
+// adding points
+let points = 0;
+function addPoints() {
+    const pointsElement = document.getElementById("points");
+    pointsElement.textContent = (`${points += 1}`);
+}
+
 // clearing the matches
 function matchClear(event) {
     if (colorOne === colorTwo) {
@@ -68,6 +75,7 @@ function matchClear(event) {
             cardOne.nextElementSibling.classList.toggle("hide");
             cardTwo.nextElementSibling.classList.toggle("hide");
         }, 300);
+        addPoints();
     } else {
         setTimeout(function() {
             cardOne.classList.toggle("hide");
@@ -84,7 +92,6 @@ function goAgain() {
         back.removeEventListener("click", matchClear);
     }
 }
-
 
 
 
