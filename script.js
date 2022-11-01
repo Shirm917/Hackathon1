@@ -1,13 +1,10 @@
 // start button
 function addStartBtn() {
     const startButton = document.getElementById("startBtn");
-    // startButton.addEventListener("click", addColors);
     startButton.addEventListener("click", clearPoints);
     startButton.addEventListener("click", restart);
 }
 addStartBtn();
-
-// cardsAppear();
 
 const backs = document.querySelectorAll(".back"); // All the backfaces of the cards
 const fronts = document.querySelectorAll(".front"); // All the frontfaces of the cards
