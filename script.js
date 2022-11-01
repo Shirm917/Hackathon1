@@ -1,3 +1,14 @@
+// start button
+function addStartBtn() {
+    const startButton = document.getElementById("startBtn");
+    // startButton.addEventListener("click", addColors);
+    startButton.addEventListener("click", clearPoints);
+    startButton.addEventListener("click", restart);
+}
+addStartBtn();
+
+// cardsAppear();
+
 const backs = document.querySelectorAll(".back"); // All the backfaces of the cards
 const fronts = document.querySelectorAll(".front"); // All the frontfaces of the cards
 
@@ -68,6 +79,15 @@ function addPoints() {
     pointsElement.textContent = (`${points += 1}`);
 }
 
+let cardsLeft = 20;
+// clear points
+function clearPoints() {
+    const pointsElement = document.getElementById("points");
+    if (cardsLeft === 0) {
+        pointsElement.textContent = 0;
+    }
+}
+
 // clearing the matches
 function matchClear(event) {
     if (colorOne === colorTwo) {
@@ -76,15 +96,17 @@ function matchClear(event) {
             cardTwo.nextElementSibling.classList.toggle("hide");
         }, 300);
         addPoints();
+        cardsLeft -= 2;
     } else {
         setTimeout(function() {
             cardOne.classList.toggle("hide");
-            cardTwo.classList.toggle("hide")
+            cardTwo.classList.toggle("hide");
         }, 700);
     }
     goAgain();
 }
 
+// pick again
 function goAgain() {
     for (const back of backs) {
         back.addEventListener("click", matchCheck1);
@@ -93,6 +115,17 @@ function goAgain() {
     }
 }
 
+// restarts everything
+function restart(listElements) {
+    if (cardsLeft === 0) {
+        frontNum = 0;
+        addColors();
+        for (const back of backs) {
+            back.classList.toggle("hide");
+        }
+        for (const front of fronts) {
+            front.classList.toggle("hide");
+        }
+    }
 
-
-
+}
