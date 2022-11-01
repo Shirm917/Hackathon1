@@ -126,8 +126,9 @@ function restart(listElements) {
         for (const front of fronts) {
             front.classList.toggle("hide");
         }
+        points = 0;
         cardsLeft = 20;
-        h1Element.classList.toggle("disappear");
+        h1Element.textContent = "";
         timerCount = 0;
         timerElem.textContent = "0";
         startTimer();
