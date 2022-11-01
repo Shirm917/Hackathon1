@@ -23,7 +23,6 @@ function addEvents(listElements) {
     for (const elem of listElements) {
         elem.addEventListener("click", hideAndShow);
         elem.addEventListener("click", matchCheck1);
-        elem.addEventListener("click", matchCheck2);
     }
 }
 
@@ -42,9 +41,9 @@ let cardOne;
 function matchCheck1(event) {
     colorOne = event.target.nextElementSibling.style.background;
     cardOne = event.target;
-    // event.target.removeEventListener("click", matchCheck1);
     for (const back of backs) {
         back.removeEventListener("click", matchCheck1);
+        back.addEventListener("click", matchCheck2);
         back.addEventListener("click", matchClear);
     }
 }
@@ -60,14 +59,28 @@ function matchCheck2(event) {
 // clearing the matches
 function matchClear(event) {
     if (colorOne === colorTwo) {
-        console.log("yes");
-        cardOne.nextElementSibling.classList.toggle("hide");
-        cardTwo.nextElementSibling.classList.toggle("hide");
+        setTimeout(function() {
+            cardOne.nextElementSibling.classList.toggle("hide");
+            cardTwo.nextElementSibling.classList.toggle("hide");
+        }, 1200);
     } else {
-        cardOne.classList.toggle("hide");
-        cardTwo.classList.toggle("hide");
+        setTimeout(function() {
+            cardOne.classList.toggle("hide");
+            cardTwo.classList.toggle("hide")
+        }, 1200);
+    }
+    goAgain();
+}
+
+function goAgain() {
+    for (const back of backs) {
+        back.addEventListener("click", matchCheck1);
+        back.removeEventListener("click", matchCheck2);
+        back.removeEventListener("click", matchClear);
     }
 }
+
+
 
 
 
