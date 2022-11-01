@@ -7,13 +7,6 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #00b5f7;
-    /* background-size: 53px 53px;
-    background-image: radial-gradient(
-        transparent 28px,
-        #ffffff 28px,
-        #ffffff 32px,
-        transparent 32px
-    ); */
 }
 
 .container {
@@ -33,7 +26,7 @@ div {
 .front, 
 .back {
     width: 100px;
-    height: 200px;
+    height: 150px;
 }
 
 .hide {
