@@ -4,7 +4,7 @@ const fronts = document.querySelectorAll(".front"); // All the frontfaces of the
 let num = 0; // declared before so num doesn't equal zero everytime the function is called
 // To add background colors to the front faces
 function addColors() {
-    const colors = ["red", "blue"];
+    const colors = ["red", "blue", "green", "sandybrown", "purple", "orange", "gray", "pink", "lightblue", "maroon"];
     for (let i = 0; i < colors.length; i++) {
         if (num < fronts.length) {
             fronts[num].style.background = colors[i];
@@ -62,12 +62,12 @@ function matchClear(event) {
         setTimeout(function() {
             cardOne.nextElementSibling.classList.toggle("hide");
             cardTwo.nextElementSibling.classList.toggle("hide");
-        }, 1200);
+        }, 300);
     } else {
         setTimeout(function() {
             cardOne.classList.toggle("hide");
             cardTwo.classList.toggle("hide")
-        }, 1200);
+        }, 700);
     }
     goAgain();
 }
