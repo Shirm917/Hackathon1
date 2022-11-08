@@ -1,3 +1,19 @@
+
+
+// Hello Shir this is the review for the Hackaton. 
+// In general Your project is well done. The flow process of the game is well thinked.
+// I will only work in the colors you are using for the background you can pass instead some 
+// #aabbcc (Hexadecimal) values in to your array and get nice colors.
+// There is also a problem if you click to fast in to the boxes then the events in your code make
+// for one of the boxes to be fliped for the rest of the game. Later you will learn promises and
+// you will be able to solve this easily.
+// I will add a restart Button for the player to be able to start again in any moment beside the 
+// button that you have now to play again. 
+// Congratulations on your project
+
+
+
+
 // start button
 function addStartBtn() {
     const startButton = document.getElementById("startBtn");
@@ -12,6 +28,7 @@ const fronts = document.querySelectorAll(".front"); // All the frontfaces of the
 let frontNum = 0; // declared before so num doesn't equal zero everytime the function is called
 // To add background colors to the front faces and randomize the colors
 function addColors() {
+    // this array you can use hexadecimal values for the colors #aabbcc
     const colors = ["red", "blue", "green", "sandybrown", "purple", "orange", "gray", "pink", "lightblue", "maroon"];
     const numbers = [0,1,2,3,4,5,6,7,8,9];
     let num = 10;
