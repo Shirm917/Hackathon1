@@ -1,3 +1,19 @@
+// Add cards
+function addCards() {
+    const container = document.querySelector(".container");
+    for (let i = 0; i < 20; i++) {
+        const sectionElem = document.createElement("section");
+        const divElemBack = document.createElement("div");
+        const divElemFront = document.createElement("div");
+        sectionElem.classList.add("card");
+        divElemBack.classList.add("back");
+        divElemFront.classList.add("front");
+        sectionElem.append(divElemBack,divElemFront);
+        container.append(sectionElem);
+    }
+} 
+addCards();
+
 // start button
 function addStartBtn() {
     const startButton = document.getElementById("startBtn");
@@ -42,14 +58,17 @@ function addEvents(listElements) {
 addEvents(backs); // adding event listeners to all the backfaces
 
 // When you click on a card the class hide is toggled on and off and when on the card invisible
+let lockBoard = false;
 function hideAndShow(event) {
-    event.target.classList.toggle("hide");
+    if (lockBoard) return;
+    event.target.classList.add("hide");
 }
 
 // getting the color of the first card 
 let colorOne;
 let cardOne;
 function matchCheck1(event) {
+    if (lockBoard) return;
     colorOne = event.target.nextElementSibling.style.background;
     cardOne = event.target;
     for (const back of backs) {
@@ -63,6 +82,7 @@ function matchCheck1(event) {
 let colorTwo;
 let cardTwo;
 function matchCheck2(event) {
+    if (lockBoard) return;
     colorTwo = event.target.nextElementSibling.style.background;
     cardTwo = event.target;
 }
@@ -78,29 +98,34 @@ let cardsLeft = 20;
 // clear points
 function clearPoints() {
     const pointsElement = document.getElementById("points");
-    if (cardsLeft === 0) {
-        pointsElement.textContent = 0;
-    }
+    pointsElement.textContent = 0;
+    points = 0;
+
 }
 
 // clearing the matches
 function matchClear(event) {
+    lockBoard = true;
     if (colorOne === colorTwo) {
         setTimeout(function() {
-            cardOne.nextElementSibling.classList.toggle("hide");
-            cardTwo.nextElementSibling.classList.toggle("hide");
+            cardOne.nextElementSibling.classList.add("hide");
+            cardTwo.nextElementSibling.classList.add("hide");
+            lockBoard = false;
         }, 200);
         addPoints();
         cardsLeft -= 2;
     } else {
         setTimeout(function() {
-            cardOne.classList.toggle("hide");
-            cardTwo.classList.toggle("hide");
+            cardOne.classList.remove("hide");
+            cardTwo.classList.remove("hide");
+            lockBoard = false;
         }, 700);
     }
     goAgain();
-    winner();
-    stopTimer();
+    if (cardsLeft === 0) {
+        winner();
+        stopTimer();
+    }
 }
 
 // pick again
@@ -116,32 +141,26 @@ function goAgain() {
 let timerCount = 0;
 const timerElem = document.getElementById("timer");
 const h1Element = document.getElementById("winner");
-function restart(listElements) {
-    if (cardsLeft === 0) {
-        frontNum = 0;
-        addColors();
-        for (const back of backs) {
-            back.classList.toggle("hide");
-        }
-        for (const front of fronts) {
-            front.classList.toggle("hide");
-        }
-        points = 0;
-        cardsLeft = 20;
-        h1Element.textContent = "";
-        timerCount = 0;
-        timerElem.textContent = "0";
-        startTimer();
+function restart() {
+    frontNum = 0;
+    addColors();
+    for (const back of backs) {
+        back.classList.remove("hide");
     }
-
+    for (const front of fronts) {
+        front.classList.remove("hide");
+    }
+    cardsLeft = 20;
+    h1Element.textContent = "";
+    timerCount = 0;
+    timerElem.textContent = "0";
+    stopTimer();
+    startTimer();
 }
 
 function winner() {
-    if (cardsLeft === 0) {
-        const message = document.createTextNode(`You Won after ${timerCount} seconds! Congratulations!`);
-        h1Element.append(message);
-        document.body.prepend(h1Element);
-    }
+    const message = document.createTextNode(`You Won after ${timerCount} seconds! Congratulations!`);
+    h1Element.append(message);
 }
 
 let timer;
@@ -153,9 +172,6 @@ function startTimer() {
 
 startTimer();
 
-
 function stopTimer() {
-    if (cardsLeft === 0) {
-        clearInterval(timer);
-    }
+    clearInterval(timer);
 }
