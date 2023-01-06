@@ -25,9 +25,10 @@ button {
     width: 100px;
     height: 100px;
     border-radius: 100%;
+    margin-top: -15%;
 }
 
-button a{
+a {
     text-decoration: none;
 }
 
