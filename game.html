@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matching Game</title>
-    <link rel="stylesheet" href="game.css">
-</head>
-<body>
+    <link rel="stylesheet" href="game.css" />
+  </head>
+  <body>
     <div class="bodyContainer">
-        <!-- Winner Message -->
-        <h1 id="winner"></h1>
-        <!-- Points -->
-        <div class="top">
-            <button id="startBtn">Play Again</button>
-            <span>Points:</span>
-            <span id="points">0</span>
-            <span>Timer:</span>
-            <span id="timer">0</span>
+      <!-- Winner Message -->
+      <h1 id="winner"></h1>
+      <!-- Points -->
+      <div class="top">
+        <button id="startBtn">Play Again</button>
+        <div>
+          <span>Points:</span>
+          <span id="points">0</span>
         </div>
-        <!-- Cards -->
-        <div class="container"></div>
+        <div>
+          <span>Timer:</span>
+          <span id="timer">0</span>
+        </div>
+      </div>
+      <!-- Cards -->
+      <div class="container"></div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
